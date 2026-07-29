@@ -1,0 +1,690 @@
+/* ==================================================
+           SMKIK FEATURE SECTION
+           Khusus Section Keunggulan Sekolah
+        ================================================== */
+
+.smkik-feature-section .feature-card {
+    position: relative;
+    overflow: hidden;
+    background: #ffffff;
+    padding: 35px 25px;
+    border-radius: 20px;
+    text-align: center;
+    height: 100%;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(1, 66, 15, 0.08);
+    z-index: 1;
+}
+
+.smkik-feature-section .feature-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(1, 66, 15, 0.03),
+        rgba(1, 66, 15, 0.08)
+    );
+    opacity: 0;
+    transition: 0.4s;
+    z-index: -1;
+}
+
+.smkik-feature-section .feature-card:hover::before {
+    opacity: 1;
+}
+
+.smkik-feature-section .feature-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 45px rgba(1, 66, 26, 0.18);
+}
+
+.smkik-feature-section .feature-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 4px;
+    background: #014210;
+    transition: 0.4s;
+    transform: translateX(-50%);
+}
+
+.smkik-feature-section .feature-card:hover::after {
+    width: 100%;
+}
+
+.smkik-feature-section .box-icon {
+    margin-bottom: 20px;
+}
+
+.smkik-feature-section .box-icon i {
+    font-size: 58px;
+    color: #014210;
+    transition: 0.5s ease;
+}
+
+.smkik-feature-section .feature-card:hover .box-icon i {
+    transform: scale(1.15) rotate(10deg);
+    color: #0a750c;
+}
+
+.smkik-feature-section .box-title {
+    color: #01420f;
+    transition: 0.3s;
+}
+
+.smkik-feature-section .feature-card:hover .box-title {
+    color: #0a750c;
+}
+
+.smkik-feature-section .box-text {
+    color: #6b7280;
+    line-height: 1.8;
+}
+
+/* ==================================================
+           SMKIK ABOUT SECTION
+           Khusus Profil Sekolah
+        ================================================== */
+
+.smkik-about-content .sec-title {
+    position: relative;
+    display: inline-block;
+}
+
+.smkik-about-content .sec-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -12px;
+    width: 80px;
+    height: 4px;
+    border-radius: 50px;
+    background: #014210;
+    transition: 0.4s;
+}
+
+.smkik-about-content:hover .sec-title::after {
+    width: 140px;
+}
+
+/* List Keunggulan */
+
+.smkik-about-content .smkik-feature-item {
+    transition: 0.3s ease;
+}
+
+.smkik-about-content .smkik-feature-item i {
+    color: #014210;
+    transition: 0.3s ease;
+}
+
+.smkik-about-content .smkik-feature-item:hover {
+    transform: translateX(8px);
+}
+
+.smkik-about-content .smkik-feature-item:hover i {
+    transform: scale(1.2);
+    color: #0a750c;
+}
+
+/* Statistik */
+
+.smkik-about-content .smkik-stat-card {
+    background: #fff;
+    border-radius: 15px;
+    transition: 0.4s ease;
+    border: 1px solid rgba(1, 66, 15, 0.08);
+}
+
+.smkik-about-content .smkik-stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(1, 66, 15, 0.15);
+}
+
+.smkik-about-content .smkik-stat-number {
+    color: #014210;
+    font-weight: 700;
+}
+
+/* Tombol */
+
+.smkik-about-content .th-btn {
+    transition: 0.4s ease;
+}
+
+.smkik-about-content .th-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(5, 66, 1, 0.2);
+}
+
+/* Gambar */
+
+.smkik-about-image {
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+.smkik-about-image img {
+    transition: 0.7s ease;
+}
+
+.smkik-about-image:hover img {
+    transform: scale(1.05);
+}
+
+/* ==================================================
+           RESPONSIVE
+        ================================================== */
+
+@media (max-width: 991px) {
+    .smkik-feature-section .feature-card {
+        padding: 30px 20px;
+    }
+
+    .smkik-feature-section .box-icon i {
+        font-size: 48px;
+    }
+
+    .smkik-about-content .sec-title::after {
+        width: 60px;
+    }
+}
+
+@media (max-width: 767px) {
+    .smkik-feature-section .feature-card {
+        text-align: center;
+    }
+
+    .smkik-feature-section .box-title {
+        font-size: 20px;
+    }
+
+    .smkik-feature-section .box-text {
+        font-size: 15px;
+    }
+}
+
+/* ==========================================
+        SMKIK PPDB SECTION
+        ========================================== */
+
+/* Floating Image */
+
+.smkik-ppdb .apply-stadum-thumb {
+    animation: smkikFloat 5s ease-in-out infinite;
+}
+
+@keyframes smkikFloat {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Hover Gambar */
+
+.smkik-ppdb .apply-stadum-thumb {
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.smkik-ppdb .apply-stadum-thumb img {
+    transition: 0.6s ease;
+}
+
+.smkik-ppdb .apply-stadum-thumb:hover img {
+    transform: scale(1.05);
+}
+
+/* Badge Jurusan */
+
+.smkik-ppdb .badge {
+    transition: 0.3s ease;
+}
+
+.smkik-ppdb .badge:hover {
+    transform: translateY(-4px);
+}
+
+/* Card Statistik */
+
+.smkik-ppdb .bg-white {
+    transition: 0.4s ease;
+}
+
+.smkik-ppdb .bg-white:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(1, 66, 30, 0.15);
+}
+
+/* Tombol */
+
+.smkik-ppdb .th-btn {
+    transition: 0.4s ease;
+}
+
+.smkik-ppdb .th-btn:hover {
+    transform: translateY(-3px);
+}
+
+/* Judul */
+
+.smkik-ppdb .sec-title {
+    position: relative;
+}
+
+.smkik-ppdb .sec-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -12px;
+    width: 80px;
+    height: 4px;
+    border-radius: 50px;
+    background: #fff;
+    transition: 0.4s;
+}
+
+.smkik-ppdb:hover .sec-title::after {
+    width: 140px;
+}
+
+/* ==========================================
+        SMKIK PPDB TAG
+        ========================================== */
+
+.smkik-ppdb-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.smkik-ppdb-tag i {
+    font-size: 13px;
+}
+
+.smkik-ppdb-tag:hover {
+    transform: translateY(-3px);
+    background: #fff;
+    color: #014210;
+}
+
+/* ==========================================
+        SMKIK PROGRAM KEAHLIAN
+        ========================================== */
+
+.smkik-academic .academic-card {
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.smkik-academic .academic-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Gambar */
+
+.smkik-academic .academic-img {
+    overflow: hidden;
+}
+
+.smkik-academic .academic-img img {
+    transition: transform 0.6s ease;
+}
+
+.smkik-academic .academic-card:hover .academic-img img {
+    transform: scale(1.08);
+}
+
+/* Tag */
+
+.smkik-academic .academic-tag span {
+    transition: 0.3s ease;
+}
+
+.smkik-academic .academic-card:hover .academic-tag span {
+    background: #014210;
+    color: #fff;
+}
+
+/* Judul */
+
+.smkik-academic .box-title a {
+    transition: 0.3s ease;
+}
+
+.smkik-academic .academic-card:hover .box-title a {
+    color: #014210;
+}
+
+/* Icon */
+
+.smkik-academic .academic-tag i {
+    transition: 0.3s ease;
+}
+
+.smkik-academic .academic-card:hover .academic-tag i {
+    transform: rotate(15deg);
+}
+
+/* Judul Section */
+
+.smkik-academic .sec-title {
+    position: relative;
+    display: inline-block;
+}
+
+.smkik-academic .sec-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -12px;
+    width: 80px;
+    height: 4px;
+    border-radius: 20px;
+    background: #014210;
+    transition: 0.4s;
+}
+
+.smkik-academic:hover .sec-title::after {
+    width: 140px;
+}
+
+/* ==================================================
+   SMKIK ABOUT GALLERY
+================================================== */
+
+.smkik-about-gallery {
+    position: relative;
+    width: 100%;
+    min-height: 650px;
+}
+
+/* ==========================
+   Dekorasi Background
+========================== */
+
+.smkik-about-decoration {
+    position: absolute;
+    top: -30px;
+    right: -35px;
+    width: 230px;
+    height: 230px;
+    background: #014210;
+    opacity: 0.06;
+    border-radius: 50%;
+    z-index: -1;
+    animation: smkikRotate 18s linear infinite;
+}
+
+/* ==========================
+   Gambar Besar
+========================== */
+
+.smkik-about-gallery .img2 {
+    width: 86%;
+    margin-left: auto;
+    overflow: hidden;
+    border-radius: 22px;
+    position: relative;
+    animation: smkikFloatMain 6s ease-in-out infinite;
+}
+
+.smkik-about-gallery .img2 img {
+    width: 100%;
+    display: block;
+    border-radius: 22px;
+    transition: all 0.6s ease;
+    box-shadow: 0 25px 60px rgba(1, 26, 66, 0.18);
+}
+
+.smkik-about-gallery .img2:hover img {
+    transform: scale(1.05);
+}
+
+/* ==========================
+   Gambar Kecil
+========================== */
+
+.smkik-about-gallery .img1 {
+    position: absolute;
+    left: -20px;
+    bottom: 90px;
+    width: 50%;
+    z-index: 3;
+    overflow: hidden;
+    border-radius: 20px;
+    animation: smkikFloatSmall 5s ease-in-out infinite;
+}
+
+.smkik-about-gallery .img1 img {
+    width: 100%;
+    display: block;
+    border: 12px solid #fff;
+    border-radius: 20px;
+    transition: all 0.6s ease;
+    box-shadow: 0 20px 50px rgba(1, 26, 66, 0.22);
+}
+
+.smkik-about-gallery .img1:hover img {
+    transform: scale(1.05);
+}
+
+/* ==========================
+   Efek Shine
+========================== */
+
+.smkik-about-gallery .img1::before,
+.smkik-about-gallery .img2::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: -120%;
+
+    width: 60%;
+
+    height: 100%;
+
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.45),
+        transparent
+    );
+
+    transition: 1s;
+
+    z-index: 5;
+}
+
+.smkik-about-gallery .img1:hover::before,
+.smkik-about-gallery .img2:hover::before {
+    left: 140%;
+}
+
+/* ==========================
+   Counter
+========================== */
+
+.smkik-about-counter {
+    position: absolute;
+
+    right: 3%;
+
+    bottom: 35px;
+
+    z-index: 5;
+
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    box-shadow: 0 20px 45px rgba(1, 26, 66, 0.2);
+
+    animation: smkikCounter 4s ease-in-out infinite;
+
+    transition: 0.4s;
+}
+
+.smkik-about-counter:hover {
+    transform: translateY(-8px);
+}
+
+/* ==================================================
+   ANIMATION
+================================================== */
+
+@keyframes smkikFloatMain {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes smkikFloatSmall {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes smkikCounter {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes smkikRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media (max-width: 991px) {
+    .smkik-about-gallery {
+        min-height: auto;
+
+        padding-bottom: 90px;
+    }
+
+    .smkik-about-gallery .img2 {
+        width: 100%;
+    }
+
+    .smkik-about-gallery .img1 {
+        width: 65%;
+
+        left: 0;
+
+        bottom: 70px;
+    }
+}
+
+@media (max-width: 767px) {
+    .smkik-about-gallery {
+        padding-bottom: 20px;
+    }
+
+    .smkik-about-decoration {
+        display: none;
+    }
+
+    .smkik-about-gallery .img2 {
+        width: 100%;
+
+        animation: none;
+    }
+
+    .smkik-about-gallery .img1 {
+        position: relative;
+
+        width: 80%;
+
+        left: auto;
+
+        bottom: auto;
+
+        margin: -70px auto 0;
+
+        animation: none;
+    }
+
+    .smkik-about-counter {
+        position: relative;
+
+        right: auto;
+
+        bottom: auto;
+
+        margin: 25px auto 0;
+
+        width: fit-content;
+
+        animation: none;
+    }
+}
+
+.th-hero-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.hero-bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
