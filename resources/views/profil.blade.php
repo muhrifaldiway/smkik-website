@@ -2,331 +2,319 @@
 
 @section('title', 'Profil Sekolah - SMKIK Ampana Kota')
 
+@push('styles')
+<style>
+        /* CUSTOM UI/UX UPDATES - THEMA NAVY & BENTO GRID */
+        :root {
+            --smkik-green: #01420f;
+            --smkik-green-light: #0a7511;
+        }
+        
+        .bg-green { background-color: var(--smkik-green) !important; }
+        .text-green { color: var(--smkik-green) !important; }
+        
+        /* Bento Grid Card Style */
+        .bento-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+            background: #ffffff;
+        }
+        .bento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(10, 37, 64, 0.1) !important;
+        }
+
+        /* Jurusan Hover Effect */
+        .jurusan-card {
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s ease;
+            border: 1px solid #eee;
+        }
+        .jurusan-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, var(--smkik-green) 0%, var(--smkik-green-light) 100%);
+            z-index: -1;
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.4s ease cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: inherit;
+        }
+        .jurusan-card:hover::before {
+            transform: scaleY(1);
+        }
+        .jurusan-card:hover * {
+            color: #ffffff !important;
+        }
+        .jurusan-icon-box {
+            transition: all 0.4s ease;
+        }
+        .jurusan-card:hover .jurusan-icon-box {
+            background-color: rgba(255,255,255,0.15) !important;
+        }
+
+        /* Dynamic Hero Gradient */
+        .hero-gradient-overlay {
+            background: linear-gradient(135deg, rgba(10, 37, 64, 0.95) 0%, rgba(10, 37, 64, 0.6) 100%);
+        }
+
+        .jurusan-card-modern:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 20px 40px rgba(10, 64, 22, 0.15) !important;
+        }
+    </style>
+@endpush
+
 @section('content')
 
-    <div class="breadcumb-wrapper position-relative" data-bg-src="{{ asset('assets/img/shape/breadcrumb-shep.png') }}">
-        <div class="breadcumb-banner">
-            <img src="{{ asset('assets/img/sekolah/S2.jpg') }}" alt="bg-banner" style="width: 100%; height: 400px; object-fit: fill; object-position: center;" />
-        </div>
-        <div class="breadcumb-shape">
-            <img src="{{ asset('assets/img/shape/triangle-light.png') }}" alt="shape" class="jump" />
-        </div>
-        <div class="container th-container4">
-            <div class="row">
-                <div class="col-xxl-5">
-                    <div class="breadcumb-content">
-                        <h1 class="breadcumb-title">Profil Sekolah</h1>
-                        <ul class="breadcumb-menu">
-                            <li><a href="{{ route('home') }}">Beranda</a></li>
-                            <li>Profil Kami</li>
-                        </ul>
+{{-- ============================= --}}
+{{-- HERO / DYNAMIC HEADER         --}}
+{{-- ============================= --}}
+<div class="position-relative overflow-hidden" style="min-height: 50vh; background: url('{{ asset('assets/img/sekolah/S2.jpg') }}') center/cover no-repeat fixed;">
+    <div class="position-absolute top-0 start-0 w-100 h-100 hero-gradient-overlay"></div>
+    <div class="container position-relative z-1 d-flex flex-column justify-content-center align-items-center text-center h-100" style="padding-top: 15vh; padding-bottom: 10vh;">
+        <span class="badge bg-primary px-3 py-2 rounded-pill mb-3 wow fadeInDown" data-wow-delay=".2s">SMK Pusat Keunggulan</span>
+        <h1 class="text-white display-4 fw-bold mb-3 wow fadeInUp" data-wow-delay=".3s">Profil Sekolah Kami</h1>
+        <p class="text-white-50 lead mb-4 wow fadeInUp" data-wow-delay=".4s" style="max-width: 600px;">Mencetak Generasi Kompeten, Inovatif, dan Siap Bersaing di Era Transformasi Digital.</p>
+        
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent justify-content-center p-0 mb-0 wow fadeInUp" data-wow-delay=".5s">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}" class="text-white-50 text-decoration-none"><i class="fas fa-home me-1"></i> Beranda</a></li>
+                <li class="breadcrumb-item active text-white" aria-current="page">Profil Sekolah</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+{{-- ============================= --}}
+{{-- SAMBUTAN KEPALA SEKOLAH       --}}
+{{-- ============================= --}}
+<section class="space" id="sambutan-sec">
+    <div class="container th-container4">
+        <div class="row align-items-center gy-40">
+            <div class="col-lg-5">
+                <div class="position-relative wow fadeInLeft" data-wow-delay=".2s">
+                    <div class="rounded-4 overflow-hidden shadow-lg position-relative z-1">
+                        <img src="{{ asset('assets/img/professor/professor-1-5.png') }}" alt="Kepala Sekolah SMKIK Ampana Kota" class="w-100 object-fit-cover" />
+                    </div>
+                    <!-- Dekorasi background gambar -->
+                    <div class="position-absolute bg-navy rounded-4" style="top: -20px; left: -20px; right: 20px; bottom: 20px; z-index: 0; opacity: 0.1;"></div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="ps-xl-5 wow fadeInRight" data-wow-delay=".3s">
+                    <div class="title-area mb-4">
+                        <span class="sub-title text-navy fw-bold text-anim"><i class="fas fa-quote-left me-2"></i> SAMBUTAN KEPALA SEKOLAH</span>
+                        <h2 class="sec-title text-anim2">Selamat Datang di Portal Resmi SMKIK Ampana Kota</h2>
+                    </div>
+                    <p class="sec-text mt-20 lead text-dark">
+                        Assalamu'alaikum Warahmatullahi Wabarakatuh.
+                    </p>
+                    <p class="sec-text mt-2">
+                        Puji syukur kami panjatkan atas kepercayaan Bapak/Ibu dan Ananda sekalian untuk mengenal lebih dekat SMK Informatika Komputer Ampana Kota. Kami berkomitmen mendidik generasi yang tidak hanya unggul secara akademik dan penguasaan <em>software/hardware</em>, tetapi juga berkarakter, mandiri, dan siap menghadapi tantangan dunia industri digital.
+                    </p>
+                    <p class="sec-text mt-3">
+                        Melalui kurikulum <em>Link & Match</em>, tenaga pendidik yang kompeten, serta fasilitas laboratorium berstandar industri, kami memastikan setiap lulusan siap berkarya dan menjadi pribadi yang bermanfaat.
+                    </p>
+                    <div class="mt-4 pt-3 border-top">
+                        <h4 class="fw-bold mb-1 text-navy">Drs. H. Bahtiar, M.Pd.</h4>
+                        <p class="text-muted mb-0">Kepala SMK Informatika Komputer Ampana Kota</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <div class="about1-area position-relative overflow-hidden space" id="about-sec">
-        <div class="about-shep-2 shape-mockup d-none d-xxl-block" data-bottom="0%" data-right="0%">
-            <img src="{{ asset('assets/img/shape/feature-shep-2-home-1.png') }}" alt="shape" />
+{{-- ============================= --}}
+{{-- TENTANG & KEUNGGULAN (BENTO)  --}}
+{{-- ============================= --}}
+<section class="space bg-light" id="about-bento-sec">
+    <div class="container th-container4">
+        <div class="title-area text-center mb-5">
+            <span class="sub-title text-navy fw-bold text-anim">TENTANG KAMI</span>
+            <h2 class="sec-title text-anim2">Mengapa Memilih SMKIK?</h2>
         </div>
-        <div class="about-shape-right shape-mockup jump-reverse" data-right="3%" data-top="2%">
-            <img src="{{ asset('assets/img/shape/shape-7.png') }}" alt="" />
-        </div>
-        <div class="container th-container4">
-            <div class="about-wrap1 position-relative z-index-2">
-                <div class="row gy-60 align-items-center justify-content-center">
-                    <div class="row g-4 mt-4">
-
-                        <!-- Visi -->
-                        <div class="col-md-6">
-                    
-                            <div class="smkik-about-card wow fadeInUp" data-wow-delay=".2s">
-                    
-                                <i class="fas fa-eye"></i>
-                    
-                                <h5>Visi Sekolah</h5>
-                    
-                                <p>
-                                    Terwujudnya sumber daya manusia yang beriman, kreatif, mandiri, serta unggul dalam pemanfaatan Teknologi Informasi.
-                                </p>
-                    
-                            </div>
-                    
+        
+        <!-- BENTO GRID LAYOUT -->
+        <div class="row g-4">
+            
+            <!-- Kotak 1: Sejarah Singkat (Lebar) -->
+            <div class="col-lg-8">
+                <div class="bento-card rounded-4 p-5 h-100 wow fadeInUp" data-wow-delay=".2s">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-navy bg-opacity-10 text-navy rounded-circle p-3 me-3">
+                            <i class="fas fa-history fa-2x"></i>
                         </div>
-                    
-                        <!-- Kurikulum -->
-                        <div class="col-md-6">
-                    
-                            <div class="smkik-about-card wow fadeInUp" data-wow-delay=".3s">
-                    
-                                <i class="fas fa-laptop-code"></i>
-                    
-                                <h5>Kurikulum Berbasis Industri</h5>
-                    
-                                <p>
-                                    Kurikulum Link & Match yang selalu diperbarui sesuai perkembangan Dunia Usaha dan Dunia Industri.
-                                </p>
-                    
-                            </div>
-                    
-                        </div>
-                    
-                        <!-- Fasilitas -->
-                        <div class="col-md-6">
-                    
-                            <div class="smkik-about-card wow fadeInUp" data-wow-delay=".4s">
-                    
-                                <i class="fas fa-building"></i>
-                    
-                                <h5>Fasilitas Standar DUDI</h5>
-                    
-                                <p>
-                                    Laboratorium dan ruang praktik yang dirancang menyerupai lingkungan kerja sebenarnya.
-                                </p>
-                    
-                            </div>
-                    
-                        </div>
-                    
-                        <!-- Bursa Kerja -->
-                        <div class="col-md-6">
-                    
-                            <div class="smkik-about-card wow fadeInUp" data-wow-delay=".5s">
-                    
-                                <i class="fas fa-briefcase"></i>
-                    
-                                <h5>Bursa Kerja Khusus (BKK)</h5>
-                    
-                                <p>
-                                    Menyalurkan lulusan SMKIK ke berbagai perusahaan dan mitra industri terpercaya.
-                                </p>
-                    
-                            </div>
-                    
-                        </div>
-                    
-                        <!-- Akreditasi -->
-                        <div class="col-md-12">
-                    
-                            <div class="smkik-about-card wow fadeInUp" data-wow-delay=".6s">
-                    
-                                <i class="fas fa-award"></i>
-                    
-                                <h5>Akreditasi & Kemitraan</h5>
-                    
-                                <p>
-                                    Terakreditasi A berdasarkan SK BAN-S/M Nomor 1214/BAN-SM/SK/2018 serta menjalin kerja sama dengan berbagai Dunia Usaha dan Dunia Industri (DUDI).
-                                </p>
-                    
-                            </div>
-                    
-                        </div>
-                    
+                        <h3 class="fw-bold mb-0">Perjalanan Sejak 2005</h3>
                     </div>
-                    <div class="container th-container4">
+                    <p class="text-muted fs-5">
+                        Berdiri sejak tahun 2005 sebagai jawaban atas tingginya kebutuhan masyarakat Kabupaten Tojo Una-Una akan pendidikan kejuruan berbasis Teknologi Informasi. Kini, SMKIK telah berkembang menjadi institusi modern yang melahirkan ribuan talenta digital.
+                    </p>
+                    <a href="#prestasi-sec" class="btn btn-outline-dark rounded-pill mt-3 px-4">Lihat Prestasi Kami</a>
+                </div>
+            </div>
 
-                        <div class="about-wrap1 position-relative z-index-2">
-                    
-                            <div class="row gy-60 align-items-center justify-content-center">
-                    
-                                <!-- =======================
-                                    CONTENT
-                                ======================== -->
-                                <div class="col-xl-5">
-                    
-                                    <div class="about-content ms-xxl-4 pe-xxl-2 me-xl-2">
-                    
-                                        <div class="title-area">
-                    
-                                            <span class="sub-title text-anim">
-                                                TENTANG KAMI
-                                            </span>
-                    
-                                            <h2 class="sec-title text-anim2 pe-xl-5 me-xl-5">
-                    
-                                                SMK Informatika Komputer Ampana Kota
-                    
-                                            </h2>
-                    
-                                            <p class="sec-text mt-25 mb-0 wow fadeInUp" data-wow-delay=".2s">
-                    
-                                                SMK Informatika Komputer Ampana Kota merupakan Sekolah Menengah Kejuruan yang berdiri sejak tahun 2005 dan berkomitmen mencetak lulusan yang kompeten, berkarakter, siap bekerja, siap melanjutkan pendidikan, serta mampu bersaing di era digital.
-                    
-                                            </p>
-                    
-                                        </div>
-                    
-                                        <!-- Info Card -->
-                                        <div class="row g-3 mt-4">
-                    
-                                            <div class="col-6">
-                    
-                                                <div class="smkik-info-card wow fadeInUp" data-wow-delay=".3s">
-                    
-                                                    <i class="fas fa-eye"></i>
-                    
-                                                    <h5>Visi</h5>
-                    
-                                                    <p>
-                    
-                                                        Beriman, kreatif, mandiri serta unggul dalam Teknologi Informasi.
-                    
-                                                    </p>
-                    
-                                                </div>
-                    
-                                            </div>
-                    
-                                            <div class="col-6">
-                    
-                                                <div class="smkik-info-card wow fadeInUp" data-wow-delay=".4s">
-                    
-                                                    <i class="fas fa-award"></i>
-                    
-                                                    <h5>Akreditasi</h5>
-                    
-                                                    <p>
-                    
-                                                        Terakreditasi <strong>A</strong> sejak tahun 2018.
-                    
-                                                    </p>
-                    
-                                                </div>
-                    
-                                            </div>
-                    
-                                            <div class="col-6">
-                    
-                                                <div class="smkik-info-card wow fadeInUp" data-wow-delay=".5s">
-                    
-                                                    <i class="fas fa-laptop-code"></i>
-                    
-                                                    <h5>Jurusan</h5>
-                    
-                                                    <p>
-                    
-                                                        TKJ • RPL • DKV
-                    
-                                                    </p>
-                    
-                                                </div>
-                    
-                                            </div>
-                    
-                                            <div class="col-6">
-                    
-                                                <div class="smkik-info-card wow fadeInUp" data-wow-delay=".6s">
-                    
-                                                    <i class="fas fa-school"></i>
-                    
-                                                    <h5>Berdiri</h5>
-                    
-                                                    <p>
-                    
-                                                        Sejak Tahun 2005
-                    
-                                                    </p>
-                    
-                                                </div>
-                    
-                                            </div>
-                    
-                                        </div>
-                    
-                                        <!-- Button -->
-                                        <div class="mt-4 wow fadeInUp" data-wow-delay=".7s">
-                    
-                                            <a href="{{ route('profil') }}" class="th-btn">
-                    
-                                                Selengkapnya Tentang SMKIK
-                    
-                                            </a>
-                    
-                                        </div>
-                    
-                                    </div>
-                    
-                                </div>
-                    
-                                <!-- =======================
-                                    IMAGE
-                                ======================== -->
-                    
-                                <div class="col-xl-7">
-                    
-                                    <div class="img-content position-relative">
-                    
-                                        <div class="img-box4 smkik-about-gallery">
-                    
-                                            <!-- Gambar Besar -->
-                                            <div class="img2 reveal">
-                    
-                                                <img
-                                                    src="{{ asset('assets/img/sekolah/p2.jpg') }}"
-                                                    alt="Profil Sekolah 2">
-                    
-                                            </div>
-                    
-                                            <!-- Gambar Kecil -->
-                                            <div class="img1 reveal">
-                    
-                                                <img
-                                                    src="{{ asset('assets/img/sekolah/p1.jpg') }}"
-                                                    alt="Profil Sekolah 1">
-                    
-                                            </div>
-                    
-                                            <!-- Counter -->
-                                            <div class="counter-card3 wow fadeInUp smkik-about-counter" data-wow-delay=".3s">
-                    
-                                                <h3 class="box-number text-white">
-                    
-                                                    <span class="counter-number">850</span>+
-                    
-                                                </h3>
-                    
-                                                <p class="box-text text-white">
-                    
-                                                    Siswa Aktif Saat Ini
-                    
-                                                </p>
-                    
-                                            </div>
-                    
-                                        </div>
-                    
-                                        <!-- Shape -->
-                                        <div class="shape-mockup jump" data-right="26%" data-top="0%">
-                    
-                                            <img
-                                                src="{{ asset('assets/img/shape/about-3-2.png') }}"
-                                                alt="Stadum">
-                    
-                                        </div>
-                    
-                                    </div>
-                    
-                                </div>
-                    
-                            </div>
-                    
+            <!-- Kotak 2: Akreditasi (Aksen Navy) -->
+            <div class="col-lg-4">
+                <div class="rounded-4 p-5 h-100 bg-green text-white d-flex flex-column justify-content-center align-items-center text-center wow fadeInUp" data-wow-delay=".3s" style="box-shadow: 0 10px 30px rgba(10,37,64,0.3);">
+                    <i class="fas fa-certificate fa-3x mb-3 text-warning"></i>
+                    <h2 class="display-3 fw-bold mb-0">A</h2>
+                    <h5 class="mt-2 mb-0">Terakreditasi BAN-S/M</h5>
+                    <p class="text-white-50 mt-2 small">Predikat Unggul secara konsisten.</p>
+                </div>
+            </div>
+
+            <!-- Kotak 3: Visi Misi -->
+            <div class="col-lg-5">
+                <div class="bento-card rounded-4 p-5 h-100 wow fadeInUp" data-wow-delay=".4s">
+                    <h4 class="fw-bold text-navy mb-3"><i class="fas fa-eye me-2"></i>Visi Sekolah</h4>
+                    <p class="text-muted fst-italic">"Terwujudnya sumber daya manusia yang beriman, kreatif, mandiri, serta unggul dalam pemanfaatan Teknologi Informasi."</p>
+                    <hr class="my-4">
+                    <h4 class="fw-bold text-navy mb-3"><i class="fas fa-bullseye me-2"></i>Misi Utama</h4>
+                    <ul class="list-unstyled text-muted">
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Kurikulum Berbasis Industri (Link & Match)</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Menumbuhkan jiwa wirausaha/Technopreneur</li>
+                        <li><i class="fas fa-check text-success me-2"></i> Menyediakan fasilitas standar industri (DUDI)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Kotak 4: Data Pokok Grid 2x2 -->
+            <div class="col-lg-7">
+                <div class="row g-4 h-100">
+                    <div class="col-sm-6">
+                        <div class="bento-card rounded-4 p-4 h-100 wow fadeInUp" data-wow-delay=".5s">
+                            <i class="fas fa-id-card text-navy fa-2x mb-3"></i>
+                            <h5 class="fw-bold">NPSN</h5>
+                            <p class="text-muted mb-0">00000000</p>
                         </div>
-                    
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="bento-card rounded-4 p-4 h-100 wow fadeInUp" data-wow-delay=".6s">
+                            <i class="fas fa-users text-navy fa-2x mb-3"></i>
+                            <h5 class="fw-bold">Siswa Aktif</h5>
+                            <p class="text-muted mb-0">850+ Siswa</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="bento-card rounded-4 p-4 h-100 wow fadeInUp" data-wow-delay=".7s">
+                            <i class="fas fa-briefcase text-navy fa-2x mb-3"></i>
+                            <h5 class="fw-bold">Bursa Kerja Khusus</h5>
+                            <p class="text-muted mb-0">Penyaluran alumni langsung ke DUDI.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="bento-card rounded-4 p-4 h-100 wow fadeInUp" data-wow-delay=".8s">
+                            <i class="fas fa-map-marker-alt text-navy fa-2x mb-3"></i>
+                            <h5 class="fw-bold">Lokasi Strategis</h5>
+                            <p class="text-muted mb-0">Ampana Kota, Tojo Una-Una.</p>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
+</section>
 
-    <div class="video-area-1 position-relative overflow-hidden" data-overlay="title" data-opacity="3" data-bg-src="{{ asset('assets/img/sekolah/S2.jpg') }}">
-        <div class="video-thumb1-1 video-box-center" style="display: flex; justify-content: center; align-items: center; min-height: 300px;">
-            <a href="https://www.youtube.com/watch?v=-Ydebu14QlA" class="video-play-btn popup-video">
-                <i class="fa-sharp fa-solid fa-play"></i>
-            </a>
+{{-- ============================= --}}
+    {{-- PROGRAM KEAHLIAN (UPDATED)    --}}
+    {{-- ============================= --}}
+    <section class="space bg-smooth" id="jurusan-sec">
+        <div class="container th-container4">
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="title-area text-center mb-5">
+                        <span class="sub-title text-navy fw-bold text-anim">PROGRAM KEAHLIAN</span>
+                        <h2 class="sec-title text-anim2">Jurusan yang Kami Tawarkan</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                
+                <!-- TKJ -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card jurusan-card-modern border-0 rounded-4 h-100 shadow-sm bg-white overflow-hidden wow fadeInUp" data-wow-delay=".2s" style="transition: all 0.3s ease;">
+                        <!-- Bagian Header Visual -->
+                        <div class="position-relative bg-navy d-flex align-items-center justify-content-center overflow-hidden" style="height: 140px;">
+                            <!-- Ikon Background Transparan -->
+                            <i class="fas fa-network-wired position-absolute text-white" style="font-size: 8rem; opacity: 0.05; right: -20px; bottom: -20px;"></i>
+                        </div>
+                        <!-- Bagian Konten -->
+                        <div class="card-body px-4 pb-5 pt-0 text-center position-relative">
+                            <!-- Floating Icon -->
+                            <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center shadow" style="width: 80px; height: 80px; margin-top: -40px; border: 4px solid #fff; position: relative; z-index: 2;">
+                                <i class="fas fa-network-wired fa-2x text-navy"></i>
+                            </div>
+                            <h4 class="fw-bold text-dark mt-4 mb-3">Teknik Komputer & Jaringan (TKJ)</h4>
+                            <p class="text-muted small mb-0">
+                                Fokus pada perakitan infrastruktur IT, instalasi jaringan, manajemen server, dan <em>troubleshooting</em> perangkat keras.
+                            </p>
+                        </div>
+                        <!-- Hover Border Bottom -->
+                        <div class="position-absolute bottom-0 start-0 w-100 bg-primary" style="height: 4px; opacity: 0.8;"></div>
+                    </div>
+                </div>
+
+                <!-- RPL -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card jurusan-card-modern border-0 rounded-4 h-100 shadow-sm bg-white overflow-hidden wow fadeInUp" data-wow-delay=".3s" style="transition: all 0.3s ease;">
+                        <div class="position-relative bg-navy d-flex align-items-center justify-content-center overflow-hidden" style="height: 140px;">
+                            <i class="fas fa-code position-absolute text-white" style="font-size: 8rem; opacity: 0.05; right: -20px; bottom: -20px;"></i>
+                        </div>
+                        <div class="card-body px-4 pb-5 pt-0 text-center position-relative">
+                            <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center shadow" style="width: 80px; height: 80px; margin-top: -40px; border: 4px solid #fff; position: relative; z-index: 2;">
+                                <i class="fas fa-code fa-2x text-navy"></i>
+                            </div>
+                            <h4 class="fw-bold text-dark mt-4 mb-3">Rekayasa Perangkat Lunak (RPL)</h4>
+                            <p class="text-muted small mb-0">
+                                Mencetak talenta programmer yang mumpuni di bidang <em>Full-stack Web Development</em>, penguasaan arsitektur MVC, integrasi <em>database MySQL</em>, hingga skrip otomatisasi.
+                            </p>
+                        </div>
+                        <div class="position-absolute bottom-0 start-0 w-100 bg-primary" style="height: 4px; opacity: 0.8;"></div>
+                    </div>
+                </div>
+
+                <!-- DKV -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card jurusan-card-modern border-0 rounded-4 h-100 shadow-sm bg-white overflow-hidden wow fadeInUp" data-wow-delay=".4s" style="transition: all 0.3s ease;">
+                        <div class="position-relative bg-navy d-flex align-items-center justify-content-center overflow-hidden" style="height: 140px;">
+                            <i class="fas fa-palette position-absolute text-white" style="font-size: 8rem; opacity: 0.05; right: -20px; bottom: -20px;"></i>
+                        </div>
+                        <div class="card-body px-4 pb-5 pt-0 text-center position-relative">
+                            <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center shadow" style="width: 80px; height: 80px; margin-top: -40px; border: 4px solid #fff; position: relative; z-index: 2;">
+                                <i class="fas fa-palette fa-2x text-navy"></i>
+                            </div>
+                            <h4 class="fw-bold text-dark mt-4 mb-3">Desain Komunikasi Visual (DKV)</h4>
+                            <p class="text-muted small mb-0">
+                                Mengasah kreativitas dari sisi desain grafis, ilustrasi, <em>editing</em> multimedia, hingga produksi klip video untuk kebutuhan industri kreatif.
+                            </p>
+                        </div>
+                        <div class="position-absolute bottom-0 start-0 w-100 bg-primary" style="height: 4px; opacity: 0.8;"></div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
+    </section>
 
+    {{-- VIDEO PROFIL SEKOLAH          --}}
+    {{-- ============================= --}}
+    <section>
+        <div class="video-area-1 position-relative overflow-hidden" data-overlay="title" data-opacity="3" data-bg-src="{{ asset('assets/img/sekolah/S2.jpg') }}">
+            <div class="video-thumb1-1 video-box-center" style="display: flex; justify-content: center; align-items: center; min-height: 300px;">
+                <a href="https://www.youtube.com/watch?v=-Ydebu14QlA" class="video-play-btn popup-video">
+                    <i class="fa-sharp fa-solid fa-play"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    
     <section class="testi-area overflow-hidden space">
         <div class="container th-container4">
             <div class="row">
@@ -429,52 +417,88 @@
         </div>
     </section>
 
-    <div class="counter-area1 overflow-hidden">
-        <div class="container th-container2">
-            <div class="counter-wrap1">
-                <div class="counter-card wow fadeInUp" data-wow-delay=".2s">
-                    <div class="box-icon">
-                        <img src="{{ asset('assets/img/icon/counter-icon1-1.svg') }}" alt="icon" />
-                    </div>
-                    <div class="media-body">
-                        <h3 class="box-number"><span class="counter-number">5</span>+</h3>
-                        <p class="box-text">Program Keahlian</p>
-                    </div>
-                </div>
-                <div class="divider"></div>
-                <div class="counter-card wow fadeInUp" data-wow-delay=".4s">
-                    <div class="box-icon">
-                        <img src="{{ asset('assets/img/icon/counter-icon1-2.svg') }}" alt="icon" />
-                    </div>
-                    <div class="media-body">
-                        <h3 class="box-number"><span class="counter-number">45</span></h3>
-                        <p class="box-text">Guru & Staf</p>
+    {{-- ============================= --}}
+    {{-- PROGRAM KEAHLIAN (UPDATED)    --}}
+    {{-- ============================= --}}
+    <section class="space bg-smooth" id="jurusan-sec">
+        <div class="container th-container4">
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="title-area text-center mb-5">
+                        <span class="sub-title text-navy fw-bold text-anim">PROGRAM KEAHLIAN</span>
+                        <h2 class="sec-title text-anim2">Jurusan yang Kami Tawarkan</h2>
                     </div>
                 </div>
-                <div class="divider"></div>
-                <div class="counter-card wow fadeInUp" data-wow-delay=".6s">
-                    <div class="box-icon">
-                        <img src="{{ asset('assets/img/icon/counter-icon1-3.svg') }}" alt="icon" />
-                    </div>
-                    <div class="media-body">
-                        <h3 class="box-number"><span class="counter-number">1200</span>+</h3>
-                        <p class="box-text">Alumni Terserap Kerja</p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                
+                <!-- TKJ -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card jurusan-card-modern border-0 rounded-4 h-100 shadow-sm bg-white overflow-hidden wow fadeInUp" data-wow-delay=".2s" style="transition: all 0.3s ease;">
+                        <!-- Bagian Header Visual -->
+                        <div class="position-relative bg-navy d-flex align-items-center justify-content-center overflow-hidden" style="height: 140px;">
+                            <!-- Ikon Background Transparan -->
+                            <i class="fas fa-network-wired position-absolute text-white" style="font-size: 8rem; opacity: 0.05; right: -20px; bottom: -20px;"></i>
+                        </div>
+                        <!-- Bagian Konten -->
+                        <div class="card-body px-4 pb-5 pt-0 text-center position-relative">
+                            <!-- Floating Icon -->
+                            <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center shadow" style="width: 80px; height: 80px; margin-top: -40px; border: 4px solid #fff; position: relative; z-index: 2;">
+                                <i class="fas fa-network-wired fa-2x text-navy"></i>
+                            </div>
+                            <h4 class="fw-bold text-dark mt-4 mb-3">Teknik Komputer & Jaringan (TKJ)</h4>
+                            <p class="text-muted small mb-0">
+                                Fokus pada perakitan infrastruktur IT, instalasi jaringan, manajemen server, dan <em>troubleshooting</em> perangkat keras.
+                            </p>
+                        </div>
+                        <!-- Hover Border Bottom -->
+                        <div class="position-absolute bottom-0 start-0 w-100 bg-primary" style="height: 4px; opacity: 0.8;"></div>
                     </div>
                 </div>
-                <div class="divider"></div>
-                <div class="counter-card wow fadeInUp" data-wow-delay=".7s">
-                    <div class="box-icon">
-                        <img src="{{ asset('assets/img/icon/counter-icon1-4.svg') }}" alt="icon" />
-                    </div>
-                    <div class="media-body">
-                        <h3 class="box-number"><span class="counter-number">850</span>+</h3>
-                        <p class="box-text">Siswa Aktif</p>
+
+                <!-- RPL -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card jurusan-card-modern border-0 rounded-4 h-100 shadow-sm bg-white overflow-hidden wow fadeInUp" data-wow-delay=".3s" style="transition: all 0.3s ease;">
+                        <div class="position-relative bg-navy d-flex align-items-center justify-content-center overflow-hidden" style="height: 140px;">
+                            <i class="fas fa-code position-absolute text-white" style="font-size: 8rem; opacity: 0.05; right: -20px; bottom: -20px;"></i>
+                        </div>
+                        <div class="card-body px-4 pb-5 pt-0 text-center position-relative">
+                            <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center shadow" style="width: 80px; height: 80px; margin-top: -40px; border: 4px solid #fff; position: relative; z-index: 2;">
+                                <i class="fas fa-code fa-2x text-navy"></i>
+                            </div>
+                            <h4 class="fw-bold text-dark mt-4 mb-3">Rekayasa Perangkat Lunak (RPL)</h4>
+                            <p class="text-muted small mb-0">
+                                Mencetak talenta programmer yang mumpuni di bidang <em>Full-stack Web Development</em>, penguasaan arsitektur MVC, integrasi <em>database MySQL</em>, hingga skrip otomatisasi.
+                            </p>
+                        </div>
+                        <div class="position-absolute bottom-0 start-0 w-100 bg-primary" style="height: 4px; opacity: 0.8;"></div>
                     </div>
                 </div>
-                <div class="divider"></div>
+
+                <!-- DKV -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card jurusan-card-modern border-0 rounded-4 h-100 shadow-sm bg-white overflow-hidden wow fadeInUp" data-wow-delay=".4s" style="transition: all 0.3s ease;">
+                        <div class="position-relative bg-navy d-flex align-items-center justify-content-center overflow-hidden" style="height: 140px;">
+                            <i class="fas fa-palette position-absolute text-white" style="font-size: 8rem; opacity: 0.05; right: -20px; bottom: -20px;"></i>
+                        </div>
+                        <div class="card-body px-4 pb-5 pt-0 text-center position-relative">
+                            <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center shadow" style="width: 80px; height: 80px; margin-top: -40px; border: 4px solid #fff; position: relative; z-index: 2;">
+                                <i class="fas fa-palette fa-2x text-navy"></i>
+                            </div>
+                            <h4 class="fw-bold text-dark mt-4 mb-3">Desain Komunikasi Visual (DKV)</h4>
+                            <p class="text-muted small mb-0">
+                                Mengasah kreativitas dari sisi desain grafis, ilustrasi, <em>editing</em> multimedia, hingga produksi klip video untuk kebutuhan industri kreatif.
+                            </p>
+                        </div>
+                        <div class="position-absolute bottom-0 start-0 w-100 bg-primary" style="height: 4px; opacity: 0.8;"></div>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
+    </section>
 
     <section class="professor-area-1 position-relative space overflow-hidden" id="professor-sec">
         <div class="shape-mockup" data-top="0%" data-left="0%">
