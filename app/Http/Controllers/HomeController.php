@@ -33,4 +33,10 @@ class HomeController extends Controller
     {
         return view('profil');
     }
+    public function berita()
+{
+    $beritas = Berita::latest()->paginate(9);
+
+    return view('berita', compact('beritas'));
+}
 }

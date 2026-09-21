@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --forest: #123d27;
+    --forest-deep: #0b2819;
+    --forest-mid: #1b5c38;
+    --gold: #e3b10c;
+    --gold-deep: #c49208;
+    --gold-soft: #f6e6a4;
+    --crimson: #b42318;
+    --crimson-deep: #8a1610;
+    --parchment: #f3ead4;
+    --paper: #fffdf8;
+    --ink: #14241b;
+    --muted: #4a5c50;
+    --line: #d9cba8;
+}

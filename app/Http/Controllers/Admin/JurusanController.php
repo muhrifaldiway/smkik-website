@@ -51,22 +51,24 @@ class JurusanController extends Controller
 
         Jurusan::create($data);
 
-        return redirect()->route('admin.jurusan.index')->with('success', 'Jurusan berhasil ditambahkan.');
+        // Sesuaikan dengan nama route Anda (bisa 'admin.jurusan.index' atau 'jurusan.index')
+        return redirect()->route('jurusan.index')->with('success', 'Jurusan berhasil ditambahkan.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    // public function show(Jurusan $jurusan)
+    // {
+    //     return view('admin.jurusan.show', compact('jurusan'));
+    // }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Jurusan $jurusan)
     {
+        // Route Model Binding otomatis mencari data Jurusan berdasarkan ID
         return view('admin.jurusan.edit', compact('jurusan'));
     }
 
@@ -75,26 +77,56 @@ class JurusanController extends Controller
      */
     public function update(Request $request, Jurusan $jurusan)
     {
+        $request->validate([
+            'nama_jurusan' => 'required|string|max:255',
+            'singkatan' => 'nullable|string|max:50',
+            'deskripsi' => 'required|string',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'ikon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         $data = $request->all();
+
+        // Cek jika ada upload gambar baru
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama jika ada
             if ($jurusan->gambar) {
                 Storage::disk('public')->delete($jurusan->gambar);
             }
-            $jurusan->update($data);
-            return redirect()->route('admin.jurusan.index')->with('success', 'Jurusan berhasil diperbarui.');
+            $data['gambar'] = $request->file('gambar')->store('jurusan', 'public');
         }
+
+        // Cek jika ada upload ikon baru
+        if ($request->hasFile('ikon')) {
+            if ($jurusan->ikon) {
+                Storage::disk('public')->delete($jurusan->ikon);
+            }
+            $data['ikon'] = $request->file('ikon')->store('jurusan', 'public');
+        }
+
+        // Update data jurusan
+        $jurusan->update($data);
+
+        return redirect()->route('jurusan.index')->with('success', 'Jurusan berhasil diperbarui.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Jurusan $jurusan)
     {
+        // Hapus file gambar jika ada
         if ($jurusan->gambar) {
             Storage::disk('public')->delete($jurusan->gambar);
-        $jurusan->delete();
-        return redirect()->route('admin.jurusan.index')->with('success', 'Jurusan berhasil dihapus.');
         }
+
+        // Hapus file ikon jika ada
+        if ($jurusan->ikon) {
+            Storage::disk('public')->delete($jurusan->ikon);
+        }
+
+        // Hapus data dari database
+        $jurusan->delete();
+
+        return redirect()->route('jurusan.index')->with('success', 'Jurusan berhasil dihapus.');
     }
 }

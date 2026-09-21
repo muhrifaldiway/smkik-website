@@ -1,0 +1,308 @@
+/* SMKIK Admin — lapangan upacara: forest, crimson, gold */
+.admin-shell {
+    --forest: #123d27;
+    --forest-deep: #0b2819;
+    --forest-mid: #1b5c38;
+    --gold: #e3b10c;
+    --gold-deep: #c49208;
+    --gold-soft: #f6e6a4;
+    --crimson: #b42318;
+    --crimson-deep: #8a1610;
+    --parchment: #f3ead4;
+    --paper: #fffdf8;
+    --ink: #14241b;
+    --muted: #4a5c50;
+    --line: #d9cba8;
+    color: var(--ink);
+    background: var(--parchment);
+    font-family: Sora, ui-sans-serif, system-ui, sans-serif;
+}
+
+.admin-shell ::selection {
+    background: var(--gold);
+    color: var(--forest-deep);
+}
+
+.admin-shell :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+.admin-sash {
+    height: 6px;
+    background: linear-gradient(90deg, var(--forest) 0 38%, var(--crimson) 38% 58%, var(--gold) 58% 100%);
+}
+
+.admin-brand {
+    background:
+        linear-gradient(180deg, var(--forest-deep), var(--forest));
+    border-bottom: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+}
+
+.admin-sidebar {
+    background: var(--forest-deep);
+    color: var(--gold-soft);
+}
+
+.admin-nav-label {
+    color: color-mix(in srgb, var(--gold) 70%, white);
+    letter-spacing: 0.16em;
+}
+
+.admin-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 1rem;
+    border-radius: 0.7rem;
+    font-size: 0.875rem;
+    color: color-mix(in srgb, var(--gold-soft) 78%, white);
+    transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.admin-nav-link:hover {
+    background: color-mix(in srgb, var(--forest-mid) 70%, black);
+    color: var(--gold-soft);
+}
+
+.admin-nav-link.is-active {
+    background: var(--gold);
+    color: var(--forest-deep);
+    font-weight: 700;
+    box-shadow: 0 8px 18px -12px rgba(0, 0, 0, 0.55);
+}
+
+.admin-nav-link.is-active i {
+    color: var(--crimson);
+}
+
+.admin-nav-logout {
+    color: #ffc9c4;
+}
+
+.admin-nav-logout:hover {
+    background: color-mix(in srgb, var(--crimson-deep) 80%, black);
+    color: #fff;
+}
+
+.admin-header {
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+}
+
+.admin-main {
+    background:
+        radial-gradient(circle at 100% 0, color-mix(in srgb, var(--gold) 18%, transparent), transparent 28%),
+        radial-gradient(circle at 0 100%, color-mix(in srgb, var(--crimson) 10%, transparent), transparent 26%),
+        var(--parchment);
+}
+
+.admin-avatar {
+    background: var(--gold);
+    color: var(--forest-deep);
+}
+
+.admin-hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--forest);
+    color: var(--paper);
+    border-radius: 1rem;
+    box-shadow: 0 14px 28px -18px rgba(18, 61, 39, 0.7);
+}
+
+.admin-hero::after {
+    content: "";
+    position: absolute;
+    right: -40px;
+    top: -30px;
+    width: 180px;
+    height: 220px;
+    background:
+        linear-gradient(135deg, var(--crimson) 0 34%, var(--gold) 34% 100%);
+    clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 70%);
+    opacity: 0.95;
+}
+
+.admin-stat {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    box-shadow: 0 10px 24px -20px rgba(18, 61, 39, 0.7);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.admin-stat:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 28px -18px rgba(18, 61, 39, 0.55);
+}
+
+.admin-chip-forest { background: #dceee3; color: var(--forest); }
+.admin-chip-crimson { background: #f8d7d4; color: var(--crimson-deep); }
+.admin-chip-gold { background: var(--gold-soft); color: #6a4d00; }
+
+.admin-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    box-shadow: 0 10px 24px -20px rgba(18, 61, 39, 0.7);
+}
+
+.admin-quick {
+    background: color-mix(in srgb, var(--parchment) 70%, white);
+    border: 1px solid var(--line);
+    border-radius: 0.85rem;
+    transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.admin-quick:hover {
+    background: var(--gold-soft);
+    border-color: var(--gold-deep);
+    color: var(--forest-deep);
+}
+
+.admin-alert-gold {
+    background: var(--gold-soft);
+    color: #5c4200;
+    border: 1px solid var(--gold-deep);
+    border-radius: 1rem;
+}
+
+/* Recolor Tailwind blues across every admin screen */
+.admin-shell .bg-blue-600,
+.admin-shell .bg-blue-500,
+.admin-shell .bg-blue-700 {
+    background-color: var(--gold) !important;
+    color: var(--forest-deep) !important;
+}
+
+.admin-shell .hover\:bg-blue-700:hover,
+.admin-shell .hover\:bg-blue-600:hover {
+    background-color: var(--gold-deep) !important;
+    color: var(--forest-deep) !important;
+}
+
+.admin-shell .bg-blue-50,
+.admin-shell .bg-blue-100,
+.admin-shell .hover\:bg-blue-50:hover,
+.admin-shell .hover\:bg-blue-100:hover {
+    background-color: var(--gold-soft) !important;
+}
+
+.admin-shell .text-blue-400,
+.admin-shell .text-blue-500,
+.admin-shell .text-blue-600,
+.admin-shell .text-blue-700,
+.admin-shell .text-blue-800,
+.admin-shell .text-blue-900,
+.admin-shell .hover\:text-blue-700:hover,
+.admin-shell .hover\:text-blue-900:hover,
+.admin-shell .group-hover\:text-blue-500:hover,
+.admin-shell .group-hover\:text-blue-700:hover {
+    color: var(--forest-mid) !important;
+}
+
+.admin-shell .border-blue-200,
+.admin-shell .border-blue-300,
+.admin-shell .hover\:border-blue-300:hover {
+    border-color: var(--gold-deep) !important;
+}
+
+.admin-shell .focus\:border-blue-300:focus,
+.admin-shell .focus\:border-blue-500:focus,
+.admin-shell .focus\:border-indigo-500:focus {
+    border-color: var(--gold-deep) !important;
+}
+
+.admin-shell .focus\:ring-blue-200:focus,
+.admin-shell .focus\:ring-blue-500:focus,
+.admin-shell .focus\:ring-indigo-500:focus {
+    --tw-ring-color: color-mix(in srgb, var(--gold) 55%, white) !important;
+}
+
+.admin-shell .file\:bg-blue-50::file-selector-button {
+    background-color: var(--gold-soft) !important;
+}
+
+.admin-shell .file\:text-blue-700::file-selector-button {
+    color: var(--forest) !important;
+}
+
+.admin-shell .hover\:file\:bg-blue-100:hover::file-selector-button {
+    background-color: var(--gold) !important;
+}
+
+.admin-shell .bg-indigo-50,
+.admin-shell .bg-purple-100 {
+    background-color: #f8d7d4 !important;
+}
+
+.admin-shell .text-indigo-700,
+.admin-shell .text-purple-800 {
+    color: var(--crimson-deep) !important;
+}
+
+.admin-shell .from-blue-600 {
+    --tw-gradient-from: var(--forest) !important;
+}
+
+.admin-shell .to-indigo-700 {
+    --tw-gradient-to: var(--forest-mid) !important;
+}
+
+.admin-shell main table thead,
+.admin-shell main thead tr {
+    background: var(--forest) !important;
+}
+
+.admin-shell main thead th {
+    color: var(--gold-soft) !important;
+    border-color: color-mix(in srgb, var(--gold) 30%, var(--forest)) !important;
+}
+
+.admin-shell main tbody td {
+    border-color: var(--line) !important;
+}
+
+.admin-shell main tbody tr:hover {
+    background: color-mix(in srgb, var(--gold-soft) 45%, white) !important;
+}
+
+.admin-shell main .bg-white {
+    background-color: var(--paper);
+}
+
+.admin-shell [aria-current="page"] span {
+    background: var(--forest) !important;
+    color: var(--gold) !important;
+    border-color: var(--forest) !important;
+}
+
+.admin-overlay {
+    background: rgba(11, 40, 25, 0.45);
+}
+
+.admin-shell .sidebar-scroll::-webkit-scrollbar {
+    width: 5px;
+}
+.admin-shell .sidebar-scroll::-webkit-scrollbar-track {
+    background: var(--forest-deep);
+}
+.admin-shell .sidebar-scroll::-webkit-scrollbar-thumb {
+    background: var(--gold-deep);
+    border-radius: 4px;
+}
+
+@media (max-width: 767px) {
+    .admin-sidebar {
+        position: fixed;
+        inset: 0 auto 0 0;
+        transform: translateX(-100%);
+        transition: transform 220ms ease;
+        z-index: 40;
+    }
+
+    .admin-sidebar.is-open {
+        transform: translateX(0);
+    }
+}
