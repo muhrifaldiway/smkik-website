@@ -5,46 +5,45 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Berita;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str; // Untuk membuat URL otomatis (slug)
-use Illuminate\Support\Facades\Storage; // Untuk menyimpan gambar ke storage
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class BeritaController extends Controller
 {
-    // 1. Menampilkan daftar berita di tabel admin
-    public function index()
+    public function index(Request $request)
     {
-        $berita = Berita::latest()->get();
-        return view('admin.berita.index', compact('berita'));
+        $q = $request->get('q');
+
+        $berita = Berita::when($q, function ($query) use ($q) {
+            $query->where('judul', 'like', "%{$q}%")
+                ->orWhere('konten', 'like', "%{$q}%");
+        })->latest()->paginate(10)->withQueryString();
+
+        return view('admin.berita.index', compact('berita', 'q'));
     }
 
-    // 2. Menampilkan formulir tambah berita
     public function create()
     {
         return view('admin.berita.create');
     }
 
-    // 3. Memproses data dari formulir dan menyimpannya ke database
     public function store(Request $request)
     {
-        // Validasi data (pastikan judul dan konten tidak kosong)
         $request->validate([
             'judul' => 'required|max:255',
             'konten' => 'required',
-            'gambar' => 'image|mimes:jpeg,png,jpg|max:2048', // Maksimal ukuran 2MB
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->judul); // Membuat slug otomatis dari judul
+        $data = $request->only(['judul', 'konten']);
+        $data['slug'] = $this->uniqueSlug($request->judul);
 
-        // Jika admin mengupload gambar, simpan ke folder 'storage/app/public/foto_berita'
         if ($request->hasFile('gambar')) {
             $data['gambar'] = $request->file('gambar')->store('foto_berita', 'public');
         }
 
-        // Simpan ke database
         Berita::create($data);
 
-        // Kembalikan ke halaman daftar berita
         return redirect()->route('berita.index')->with('success', 'Berita berhasil diterbitkan!');
     }
 
@@ -55,26 +54,26 @@ class BeritaController extends Controller
 
     public function update(Request $request, Berita $berita)
     {
-        // Validasi data
         $request->validate([
             'judul' => 'required|max:255',
             'konten' => 'required',
-            'gambar' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->judul);
+        $data = $request->only(['judul', 'konten']);
 
-        // Jika admin mengupload gambar baru, simpan dan hapus gambar lama
+        // Slug baru hanya jika judul berubah, agar URL berita tidak berubah seiring waktu
+        if ($berita->judul !== $request->judul) {
+            $data['slug'] = $this->uniqueSlug($request->judul, $berita->id);
+        }
+
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama jika ada
             if ($berita->gambar) {
                 Storage::disk('public')->delete($berita->gambar);
             }
             $data['gambar'] = $request->file('gambar')->store('foto_berita', 'public');
         }
 
-        // Update data di database
         $berita->update($data);
 
         return redirect()->route('berita.index')->with('success', 'Berita berhasil diperbarui!');
@@ -82,14 +81,36 @@ class BeritaController extends Controller
 
     public function destroy(Berita $berita)
     {
-        // Hapus gambar jika ada
         if ($berita->gambar) {
             Storage::disk('public')->delete($berita->gambar);
         }
 
-        // Hapus berita dari database
         $berita->delete();
 
         return redirect()->route('berita.index')->with('success', 'Berita berhasil dihapus!');
+    }
+
+    private function uniqueSlug(string $judul, ?int $ignoreId = null): string
+    {
+        $base = Str::slug($judul) ?: Str::slug(Str::random(8));
+        $slug = $base;
+        $counter = 1;
+
+        $query = Berita::where('slug', $slug);
+        if ($ignoreId) {
+            $query->where('id', '!=', $ignoreId);
+        }
+
+        while ($query->exists()) {
+            $slug = $base . '-' . $counter;
+            $counter++;
+
+            $query = Berita::where('slug', $slug);
+            if ($ignoreId) {
+                $query->where('id', '!=', $ignoreId);
+            }
+        }
+
+        return $slug;
     }
 }

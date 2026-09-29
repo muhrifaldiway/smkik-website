@@ -1,41 +1,46 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Tulis Berita Baru') }}
-        </h2>
+        <div class="flex items-center gap-3">
+            <a href="{{ route('berita.index') }}" class="text-green-700 hover:bg-green-50 p-2 rounded-lg transition" title="Kembali">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Tulis Berita Baru') }}
+            </h2>
+        </div>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                
-                {{-- Form harus menggunakan enctype multipart/form-data agar bisa upload file --}}
-                <form action="{{ route('berita.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    
-                    <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2">Judul Berita</label>
-                        <input type="text" name="judul" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" placeholder="Masukkan judul..." required>
-                    </div>
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8 max-w-3xl">
 
-                    <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2">Isi Berita</label>
-                        <textarea name="konten" rows="6" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" placeholder="Tulis deskripsi berita di sini..." required></textarea>
-                    </div>
+        <form action="{{ route('berita.store') }}" method="POST" enctype="multipart/form-data" class="space-y-5">
+            @csrf
 
-                    <div class="mb-6">
-                        <label class="block text-gray-700 font-bold mb-2">Upload Foto (Opsional)</label>
-                        <input type="file" name="gambar" class="w-full border border-gray-300 rounded-md p-2">
-                        <span class="text-sm text-gray-500">Format: JPG, PNG, JPEG. Maksimal 2MB.</span>
-                    </div>
-
-                    <div class="flex items-center">
-                        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700">Simpan & Terbitkan</button>
-                        <a href="{{ route('berita.index') }}" class="ml-4 text-gray-600 hover:underline">Batal</a>
-                    </div>
-                </form>
-
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Judul Berita <span class="text-red-500">*</span></label>
+                <input type="text" name="judul" value="{{ old('judul') }}" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500" placeholder="Masukkan judul..." required>
+                @error('judul') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
-        </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Isi Berita <span class="text-red-500">*</span></label>
+                <textarea name="konten" rows="10" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500" placeholder="Tulis isi berita di sini..." required>{{ old('konten') }}</textarea>
+                @error('konten') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Upload Foto (Opsional)</label>
+                <input type="file" name="gambar" accept="image/jpeg,image/png,image/jpg" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm text-gray-600 file:mr-3 file:py-1.5 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-700 file:text-white hover:file:bg-green-800">
+                <p class="text-xs text-gray-400 mt-1">Format: JPG, PNG, JPEG. Maksimal 2MB.</p>
+                @error('gambar') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+            </div>
+
+            <div class="flex items-center pt-2 border-t">
+                <button type="submit" class="bg-green-700 hover:bg-green-800 text-white px-6 py-2.5 rounded-lg font-semibold text-sm transition shadow-sm">
+                    <i class="fas fa-save mr-1"></i> Simpan &amp; Terbitkan
+                </button>
+                <a href="{{ route('berita.index') }}" class="ml-4 bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-2.5 rounded-lg font-semibold text-sm transition">Batal</a>
+            </div>
+        </form>
+
     </div>
 </x-app-layout>

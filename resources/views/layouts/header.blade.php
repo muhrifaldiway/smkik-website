@@ -1,7 +1,7 @@
 <div class="preloader">
     <button class="th-btn preloaderCls">Batal Preloader</button>
     <div class="preloader-inner">
-        <img alt="img" src="{{ asset('assets/img/smkik/logo.png') }}"/>
+        <img alt="img" src="{{ asset('assets/img/smkik/logo.png') }}" />
     </div>
 </div>
 
@@ -11,7 +11,7 @@
         <div class="widget footer-widget">
             <div class="th-widget-about">
                 <div class="about-logo">
-                    <a href="/"><img alt="Stadum" src="{{ asset('assets/img/smkik/logo.png') }}"/></a>
+                    <a href="/"><img alt="Stadum" src="{{ asset('assets/img/smkik/logo.png') }}" /></a>
                 </div>
                 <p class="about-text">SMKIK Ampana Kota berkomitmen untuk mencetak generasi muda yang inovatif, terampil, berkarakter kuat, dan siap bersaing di Dunia Usaha serta Dunia Industri (DUDI).</p>
                 <div class="footer-info">
@@ -23,10 +23,10 @@
         <div class="widget footer-widget">
             <h3 class="widget_title">Berita Terbaru</h3>
             <div class="recent-post-wrap">
-                
+
                 {{-- Mengambil 3 berita terbaru langsung dari database --}}
                 @php
-                    $sidebar_berita = \App\Models\Berita::latest()->take(3)->get();
+                $sidebar_berita = \App\Models\Berita::latest()->take(3)->get();
                 @endphp
 
                 {{-- Melakukan perulangan untuk menampilkan berita --}}
@@ -35,7 +35,7 @@
                     <div class="media-img">
                         {{-- Jika ada gambar tampilkan, jika tidak pakai gambar bawaan --}}
                         <a href="#">
-                            <img alt="{{ $berita->judul }}" src="{{ $berita->gambar ? asset('storage/' . $berita->gambar) : asset('assets/img/blog/recent-post-1-1.jpg') }}" style="width: 80px; height: 80px; object-fit: cover;"/>
+                            <img alt="{{ $berita->judul }}" src="{{ $berita->gambar ? asset('storage/' . $berita->gambar) : asset('assets/img/blog/recent-post-1-1.jpg') }}" style="width: 80px; height: 80px; object-fit: cover;" />
                         </a>
                     </div>
                     <div class="media-body">
@@ -70,7 +70,7 @@
 <div class="popup-search-box">
     <button class="searchClose"><i class="far fa-times"></i></button>
     <form action="#">
-        <input placeholder="Apa yang sedang Anda cari?" type="text"/>
+        <input placeholder="Apa yang sedang Anda cari?" type="text" />
         <button type="submit"><i class="fal fa-search"></i></button>
     </form>
 </div>
@@ -79,12 +79,35 @@
     <div class="th-menu-area text-center">
         <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
         <div class="mobile-logo">
-            <a href="/"><img alt="Stadum" src="{{ asset('assets/img/smkik/logo.png') }}"/></a>
+            <a href="/"><img alt="Stadum" src="{{ asset('assets/img/smkik/logo.png') }}" /></a>
         </div>
         <div class="th-mobile-menu">
             <ul>
                 <li><a href="{{ route('home') }}">Beranda</a></li>
-                <li><a href="{{ route('profil') }}">Profil Sekolah</a></li>
+                <li>
+                    <a href="#">
+                        <span>Tentang Kami</span>
+                        <i class="bi bi-chevron-down toggle-dropdown"></i>
+                    </a>
+
+                    <ul>
+                        <li>
+                            <a href="{{ route('profil') }}">Profil Sekolah</a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('struktur-organisasi') }}">Struktur Organisasi</a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('fasilitas') }}">Fasilitas Sekolah</a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('berita') }}">Berita</a>
+                        </li>
+                    </ul>
+                </li>
                 <li><a href="{{ url('/#program-sec') }}">Program Keahlian</a></li>
                 <li><a href="{{ url('/#ppdb-sec') }}">Informasi PPDB</a></li>
                 <li><a href="">Hubungi Kami</a></li>
@@ -122,7 +145,7 @@
             <div class="row justify-content-between align-items-center">
                 <div class="col-auto">
                     <div class="header-logo">
-                        <a href="/"><img alt="Stadum" src="{{ asset('assets/img/smkik/logo.png') }}" width="300"/></a>
+                        <a href="/"><img alt="Stadum" src="{{ asset('assets/img/smkik/logo.png') }}" width="300" /></a>
                     </div>
                 </div>
                 <div class="col-auto">
@@ -161,18 +184,63 @@
                         <div class="col-auto">
                             <div class="header-left d-flex align-items-center">
                                 <div class="header-logo d-block d-sm-none">
-                                    <a href="/"><img alt="Stadum" src="{{ asset('assets/img/smkik/logo.png') }}" width="200"/></a>
+                                    <a href="/"><img alt="Stadum" src="{{ asset('assets/img/smkik/logo.png') }}" width="200" /></a>
                                 </div>
                                 <div class="header-button d-none d-sm-block">
-                                    <a class="th-btn" href="#">Hubungi Kami <img alt="icon" class="th-arrow" src="{{ asset('assets/img/icon/right-icon.svg') }}"/></a>
+                                    <a class="th-btn" href="#">Hubungi Kami <img alt="icon" class="th-arrow" src="{{ asset('assets/img/icon/right-icon.svg') }}" /></a>
                                 </div>
                                 <nav class="main-menu d-none d-xl-block">
                                     <ul>
-                                        <li><a href="{{ route('home') }}">Beranda</a></li>
-                                        <li><a href="{{ route('profil') }}">Profil Sekolah</a></li>
-                                        <li><a href="{{ url('/#program-sec') }}">Program Keahlian</a></li>
-                                        <li><a href="{{ url('/#ppdb-sec') }}">Informasi PPDB</a></li>
-                                        <li><a href="">Hubungi Kami</a></li>
+                                        <li>
+                                            <a href="{{ route('home') }}">Beranda</a>
+                                        </li>
+
+                                        <li class="menu-item-has-children">
+                                            <a href="#">
+                                                Tentang Kami
+                                            </a>
+
+                                            <ul class="sub-menu">
+                                                <li>
+                                                    <a href="{{ route('profil') }}">
+                                                        Profil Sekolah
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="{{ route('struktur-organisasi') }}">
+                                                        Struktur Organisasi
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="{{ route('fasilitas') }}">
+                                                        Fasilitas Sekolah
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('berita') }}">
+                                                        Berita
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li>
+                                            <a href="{{ url('/#program-sec') }}">
+                                                Program Keahlian
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="{{ url('/#ppdb-sec') }}">
+                                                Informasi PPDB
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="">Hubungi Kami</a>
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>
@@ -180,10 +248,10 @@
                         <div class="col-auto ms-lg-auto">
                             <div class="header-button">
                                 <form class="search-form">
-                                    <input placeholder="Cari info..." type="text"/>
+                                    <input placeholder="Cari info..." type="text" />
                                     <button type="submit"><i class="fa-light fa-magnifying-glass"></i></button>
                                 </form>
-                                <a class="icon-btn sideMenuToggler d-none d-xl-block" href="#"><img alt="" src="{{ asset('assets/img/icon/grid2.svg') }}"/></a>
+                                <a class="icon-btn sideMenuToggler d-none d-xl-block" href="#"><img alt="" src="{{ asset('assets/img/icon/grid2.svg') }}" /></a>
                                 <button class="th-menu-toggle d-inline-block d-xl-none" type="button"><i class="far fa-bars"></i></button>
                             </div>
                         </div>

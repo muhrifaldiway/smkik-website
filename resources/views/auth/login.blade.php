@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-    <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 px-4 py-10">
+    <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-900 via-green-950 to-green-900 px-4 py-10">
 
         <div class="w-full max-w-6xl">
 
@@ -9,12 +9,12 @@
                 <!-- ========================= -->
                 <!-- PANEL KIRI -->
                 <!-- ========================= -->
-                <div class="hidden lg:flex flex-col justify-center bg-gradient-to-br from-purple-900 via-slate-900 to-purple-950 p-12">
+                <div class="hidden lg:flex flex-col justify-center bg-gradient-to-br from-green-900 via-slate-900 to-green-950 p-12">
 
                     <img
-                        src="{{ asset('assets/img/logo.svg') }}"
+                        src="{{ asset('assets/img/smkik/logoputih.png') }}"
                         alt="SMKIK"
-                        class="w-28 mb-6">
+                        class="w-80 mb-6">
 
                     <h1 class="text-4xl font-bold text-white leading-tight">
                         Sistem Informasi
@@ -157,7 +157,7 @@
                                 <input
                                     id="remember_me"
                                     type="checkbox"
-                                    class="rounded border-gray-300 text-purple-700 shadow-sm focus:ring-purple-600"
+                                    class="rounded border-gray-300 text-green-700 shadow-sm focus:ring-green-600"
                                     name="remember">
 
                                 <span class="ms-2 text-sm text-gray-600">
@@ -168,7 +168,7 @@
 
                             @if (Route::has('password.request'))
                                 <a
-                                    class="text-sm text-purple-700 hover:text-purple-900"
+                                    class="text-sm text-green-700 hover:text-green-900"
                                     href="{{ route('password.request') }}">
 
                                     Lupa Password?
@@ -181,7 +181,7 @@
                         <!-- Login Button -->
                         <button
                             type="submit"
-                            class="w-full bg-purple-700 hover:bg-purple-800 text-white font-semibold py-3 rounded-xl transition duration-300 shadow-lg">
+                            class="w-full bg-green-700 hover:bg-green-800 text-white font-semibold py-3 rounded-xl transition duration-300 shadow-lg">
 
                             Login ke Dashboard
 
@@ -193,7 +193,7 @@
                                 Belum memiliki akun?
                             </p>
                         
-                            <p class="text-sm text-purple-700 font-medium">
+                            <p class="text-sm text-green-700 font-medium">
                                 Silakan hubungi Administrator Sistem.
                             </p>
                         
@@ -203,7 +203,7 @@
                             <div class="mt-4 text-center">
 
                                 <a href="{{ route('home') }}"
-                                class="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-purple-700 transition">
+                                class="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-green-700 transition">
 
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         class="h-4 w-4"

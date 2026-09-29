@@ -1,41 +1,118 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Tambah Jurusan Baru') }}
-        </h2>
+        <div class="flex items-center gap-4">
+            <a href="{{ route('jurusan.index') }}" class="text-green-700 hover:bg-green-50 p-2 rounded-lg transition" title="Kembali">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <div>
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">Tambah Jurusan Baru</h2>
+                <p class="text-sm text-gray-500 mt-1">Lengkapi data program keahlian di bawah ini.</p>
+            </div>
+        </div>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                
-                <form action="{{ route('jurusan.store') }}" method="POST" enctype="multipart/form-data">
+        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white rounded-2xl shadow-md border border-green-100 p-8">
+
+                <form action="{{ route('jurusan.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                     @csrf
-                    
-                    <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2">Nama Jurusan (Program Keahlian)</label>
-                        <input type="text" name="nama_jurusan" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200" placeholder="Contoh: Teknik Komputer dan Jaringan" required>
+
+                    <div>
+                        <label for="nama_jurusan" class="block text-sm font-semibold text-gray-700 mb-2">
+                            Nama Jurusan (Program Keahlian) <span class="text-red-500">*</span>
+                        </label>
+                        <input
+                            id="nama_jurusan"
+                            type="text"
+                            name="nama_jurusan"
+                            value="{{ old('nama_jurusan') }}"
+                            class="w-full border-gray-300 rounded-xl shadow-sm focus:border-green-500 focus:ring-green-500 @error('nama_jurusan') border-red-400 @enderror"
+                            placeholder="Contoh: Teknik Komputer dan Jaringan"
+                            required
+                            autofocus>
+                        @error('nama_jurusan')
+                            <p class="text-sm text-red-600 mt-2"><i class="fas fa-circle-exclamation mr-1"></i>{{ $message }}</p>
+                        @enderror
                     </div>
 
-                    <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2">Singkatan</label>
-                        <input type="text" name="singkatan" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200" placeholder="Contoh: TKJ (Opsional)">
+                    <div>
+                        <label for="singkatan" class="block text-sm font-semibold text-gray-700 mb-2">
+                            Singkatan <span class="text-gray-400 font-normal">(opsional)</span>
+                        </label>
+                        <input
+                            id="singkatan"
+                            type="text"
+                            name="singkatan"
+                            value="{{ old('singkatan') }}"
+                            class="w-full border-gray-300 rounded-xl shadow-sm focus:border-green-500 focus:ring-green-500"
+                            placeholder="Contoh: TKJ">
+                        @error('singkatan')
+                            <p class="text-sm text-red-600 mt-2"><i class="fas fa-circle-exclamation mr-1"></i>{{ $message }}</p>
+                        @enderror
                     </div>
 
-                    <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2">Deskripsi Jurusan</label>
-                        <textarea name="deskripsi" rows="5" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200" placeholder="Jelaskan secara detail mengenai jurusan ini..." required></textarea>
+                    <div>
+                        <label for="deskripsi" class="block text-sm font-semibold text-gray-700 mb-2">
+                            Deskripsi Jurusan <span class="text-red-500">*</span>
+                        </label>
+                        <textarea
+                            id="deskripsi"
+                            name="deskripsi"
+                            rows="6"
+                            class="w-full border-gray-300 rounded-xl shadow-sm focus:border-green-500 focus:ring-green-500 @error('deskripsi') border-red-400 @enderror"
+                            placeholder="Jelaskan secara detail mengenai jurusan ini..."
+                            required>{{ old('deskripsi') }}</textarea>
+                        @error('deskripsi')
+                            <p class="text-sm text-red-600 mt-2"><i class="fas fa-circle-exclamation mr-1"></i>{{ $message }}</p>
+                        @enderror
                     </div>
 
-                    <div class="mb-6">
-                        <label class="block text-gray-700 font-bold mb-2">Foto / Gambar Representasi (Opsional)</label>
-                        <input type="file" name="gambar" class="w-full border border-gray-300 rounded-md p-2" accept="image/*">
-                        <p class="text-sm text-gray-500 mt-1">Format: JPG, JPEG, PNG. Maksimal 2MB.</p>
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="gambar" class="block text-sm font-semibold text-gray-700 mb-2">
+                                Foto / Gambar Representasi <span class="text-gray-400 font-normal">(opsional)</span>
+                            </label>
+                            <input
+                                id="gambar"
+                                type="file"
+                                name="gambar"
+                                class="w-full border border-gray-300 rounded-xl p-2.5 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-green-700 file:text-white hover:file:bg-green-800 file:cursor-pointer"
+                                accept="image/*">
+                            <p class="text-xs text-gray-500 mt-2">JPG, JPEG, PNG, GIF, SVG. Maksimal 2MB.</p>
+                            @error('gambar')
+                                <p class="text-sm text-red-600 mt-1"><i class="fas fa-circle-exclamation mr-1"></i>{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <label for="ikon" class="block text-sm font-semibold text-gray-700 mb-2">
+                                Ikon Jurusan <span class="text-gray-400 font-normal">(opsional)</span>
+                            </label>
+                            <input
+                                id="ikon"
+                                type="file"
+                                name="ikon"
+                                class="w-full border border-gray-300 rounded-xl p-2.5 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-green-700 file:text-white hover:file:bg-green-800 file:cursor-pointer"
+                                accept="image/*">
+                            <p class="text-xs text-gray-500 mt-2">Gambar kecil untuk kartu jurusan.</p>
+                            @error('ikon')
+                                <p class="text-sm text-red-600 mt-1"><i class="fas fa-circle-exclamation mr-1"></i>{{ $message }}</p>
+                            @enderror
+                        </div>
                     </div>
 
-                    <div class="flex items-center">
-                        <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-6 rounded hover:bg-blue-700">Simpan Data</button>
-                        <a href="{{ route('jurusan.index') }}" class="ml-4 text-gray-600 hover:underline font-semibold">Batal</a>
+                    <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
+                        <button
+                            type="submit"
+                            class="inline-flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white font-semibold px-6 py-2.5 rounded-xl transition shadow-md">
+                            <i class="fas fa-save"></i> Simpan Data
+                        </button>
+                        <a
+                            href="{{ route('jurusan.index') }}"
+                            class="inline-flex items-center gap-2 text-gray-600 hover:text-gray-800 font-semibold px-5 py-2.5 rounded-xl border border-gray-300 hover:bg-gray-50 transition">
+                            <i class="fas fa-times"></i> Batal
+                        </a>
                     </div>
                 </form>
 
